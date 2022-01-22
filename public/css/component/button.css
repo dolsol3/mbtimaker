@@ -1,0 +1,14 @@
+/* 스타트버튼 재사용 */
+.start__button-group {
+  display: flex;
+  justify-content: center;
+}
+
+.start-bts {
+  width: 360px;
+}
+
+.addthis-bts {
+  display: flex;
+  justify-content: center;
+}

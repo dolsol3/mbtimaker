@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+}
+
+.container__mainview {
+  width: 360px;
+  height: 460px;
+  /* border: 1px solid; */
+  margin: auto 10px;
+}
+.title__mainview {
+  width: 360px;
+}
+.thumnail__mainview {
+  width: 360px;
+  height: 360px;
+  background-color: bisque;
+  border-radius: 20px;
+}
+
+.sub__mainview {
+  display: flex;
+  width: 360px;
+  height: 30px;
+}
+
+.writer {
+  width: 120px;
+  height: 50px;
+  line-height: 50px;
+}
+
+.view-point {
+  width: 180px;
+  height: 50px;
+
+  line-height: 50px;
+}
+
+.start-mbti {
+  width: 180px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

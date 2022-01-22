@@ -1,0 +1,38 @@
+.start {
+  display: flex;
+  justify-content: center;
+}
+
+.start__container {
+  width: 480px;
+  height: auto;
+  padding: 0px 15px;
+  justify-content: center;
+}
+
+.start__title {
+  word-break: break-all;
+}
+.title-img {
+  width: 360px;
+  height: 360px;
+  border-radius: 15px;
+}
+/* 줄바꿈 기능  */
+.text-explain {
+  word-break: break-all;
+}
+
+.title-img-box {
+  display: flex;
+  justify-content: center;
+}
+
+.start-wrtier {
+  display: flex;
+  height: 25px;
+}
+
+.start-box2 {
+  margin: 0 10px;
+}

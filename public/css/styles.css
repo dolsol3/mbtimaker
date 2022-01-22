@@ -1,0 +1,12 @@
+@import "reset.css";
+@import "variables.css";
+
+/* component */
+@import "component/font.css";
+@import "component/button.css";
+
+/* screen */
+@import "screen/index.css";
+@import "screen/result.css";
+@import "screen/making.css";
+@import "screen/start.css";
