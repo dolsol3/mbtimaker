@@ -116,5 +116,15 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+
+    <script>
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+
+      // 상태표시줄 url 가져오기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+
+      db.collection("보여주기").doc(쿼리스트링.get("id")).get().then();
+    </script>
   </body>
 </html>

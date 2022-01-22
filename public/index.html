@@ -116,6 +116,7 @@
 
     <script>
       const db = firebase.firestore();
+      const storage = firebase.storage();
       db.collection("보여주기")
         .get()
         .then((결과) => {
@@ -138,10 +139,11 @@
             <p class="text-primary p14 text-center">${
               doc.data().조회수
             }회 테스트</p></div>
-          <div class="start-mbti"><button type="button" class="btn btn-outline-primary sub__button p14">
+          <div class="start-mbti"><button onclick = "location.href = 'making/start.html?id=${
+            doc.id
+          }'" type="button" class="btn btn-outline-primary sub__button p14">
             시작하기
           </button></div>
-
         </div>
       </article>`;
             $(".container").append(미리보기);

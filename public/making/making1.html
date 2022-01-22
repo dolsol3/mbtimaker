@@ -62,6 +62,9 @@
           </div>
           <div class="making__pass-button mt-3">
             <button type="button" class="btn btn-outline-danger">이전</button>
+            <button type="button" class="save-btn btn btn-outline-dark">
+              저장하기
+            </button>
             <button type="button" class="btn btn-outline-primary">다음</button>
           </div>
           <div class="making__title p24 mt-3">MBTI 제목 및 설명 적기</div>
@@ -73,7 +76,7 @@
             >
             <input
               type="text"
-              class="form-control"
+              class="title-input form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               placeholder="MBTI 제목을 적어주세요"
@@ -85,7 +88,7 @@
             >
             <input
               type="text"
-              class="form-control"
+              class="explain-input form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
               placeholder="어떤 유형의 MBTI인지 사람들에게 알려주세요"
@@ -94,14 +97,14 @@
           <div class="input-group">
             <input
               type="file"
-              class="form-control"
+              class="title-img-upload form-control"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               aria-label="Upload"
               accept="image/*"
             />
             <button
-              class="btn btn-outline-primary"
+              class="img-upload btn btn-outline-primary"
               type="button"
               id="inputGroupFileAddon04"
             >
@@ -166,6 +169,39 @@
           reader.readAsDataURL(imgFile);
           //업로드한 이미지의 URL을 reader에 등록
         });
+    </script>
+    <!--  쿼리스트링.get("id") + -->
+    <script>
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+      // 이미지 저장하기
+
+      var file = document.querySelector(".title-img-upload").files[0];
+      var storageRef = storage.ref();
+      var 저장할경로 = storageRef.child("image/" + "파일명");
+      var 업로드작업 = 저장할경로.put(file);
+
+      // 주소찾기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+
+      $(".save-btn").click(function () {
+        var 저장할거 = {
+          제목: $(".title-input").val(),
+          설명: $(".explain-input").val(),
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("저장에 성공하였습니다");
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("저장에 실패하였습니다");
+          });
+      });
     </script>
   </body>
 </html>

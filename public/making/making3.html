@@ -62,6 +62,9 @@
           </div>
           <div class="making__pass-button mt-3">
             <button type="button" class="btn btn-outline-danger">이전</button>
+            <button type="button" class="save-btn btn btn-outline-dark">
+              저장하기
+            </button>
             <button type="button" class="btn btn-outline-primary">다음</button>
           </div>
           <div class="making__title p24 mt-3">감각(S) VS 직관(N)</div>
@@ -75,9 +78,10 @@
             <div class="question-box pb-3">
               <div class="input-group mt-3">
                 <span class="input-group-text" id="inputGroup-sizing-default"
-                  >질문1</span
+                  >질문4</span
                 >
                 <input
+                  id="q4"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -90,6 +94,7 @@
                   >감각1</span
                 >
                 <input
+                  id="s1"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -102,6 +107,7 @@
                   >직관1</span
                 >
                 <input
+                  id="n1"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -113,9 +119,10 @@
             <div class="question-box pb-3">
               <div class="input-group mt-3">
                 <span class="input-group-text" id="inputGroup-sizing-default"
-                  >질문2</span
+                  >질문5</span
                 >
                 <input
+                  id="q5"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -128,6 +135,7 @@
                   >감각2</span
                 >
                 <input
+                  id="s2"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -140,6 +148,7 @@
                   >직관2</span
                 >
                 <input
+                  id="n2"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -151,9 +160,10 @@
             <div class="question-box2">
               <div class="input-group mt-3">
                 <span class="input-group-text" id="inputGroup-sizing-default"
-                  >질문3</span
+                  >질문6</span
                 >
                 <input
+                  id="q6"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -166,6 +176,7 @@
                   >감각3</span
                 >
                 <input
+                  id="s3"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -178,6 +189,7 @@
                   >직관3</span
                 >
                 <input
+                  id="n3"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -222,5 +234,38 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+    <script>
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+
+      // 주소찾기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+
+      $(".save-btn").click(function () {
+        var 저장할거 = {
+          질문4: $("#q4").val(),
+          질문5: $("#q5").val(),
+          질문6: $("#q6").val(),
+          감각1: $("#s1").val(),
+          감각2: $("#s2").val(),
+          감각3: $("#s3").val(),
+          직관1: $("#n1").val(),
+          직관2: $("#n2").val(),
+          직관3: $("#n3").val(),
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("저장에 성공하였습니다");
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("저장에 실패하였습니다");
+          });
+      });
+    </script>
   </body>
 </html>

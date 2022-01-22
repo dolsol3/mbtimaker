@@ -62,6 +62,9 @@
           </div>
           <div class="making__pass-button mt-3">
             <button type="button" class="btn btn-outline-danger">이전</button>
+            <button type="button" class="save-btn btn btn-outline-dark">
+              저장하기
+            </button>
             <button type="button" class="btn btn-outline-primary">다음</button>
           </div>
           <div class="making__title p24 mt-3">외향(E) VS 내향(I)</div>
@@ -78,6 +81,7 @@
                   >질문1</span
                 >
                 <input
+                  id="q1"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -90,6 +94,7 @@
                   >외향1</span
                 >
                 <input
+                  id="e1"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -102,6 +107,7 @@
                   >내향1</span
                 >
                 <input
+                  id="i1"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -116,6 +122,7 @@
                   >질문2</span
                 >
                 <input
+                  id="q2"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -128,6 +135,7 @@
                   >외향2</span
                 >
                 <input
+                  id="e2"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -140,6 +148,7 @@
                   >내향2</span
                 >
                 <input
+                  id="i2"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -154,6 +163,7 @@
                   >질문3</span
                 >
                 <input
+                  id="q3"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -166,6 +176,7 @@
                   >외향3</span
                 >
                 <input
+                  id="e3"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -178,6 +189,7 @@
                   >내향3</span
                 >
                 <input
+                  id="i3"
                   type="text"
                   class="form-control"
                   aria-label="Sizing example input"
@@ -222,5 +234,38 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
+    <script>
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+
+      // 주소찾기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+
+      $(".save-btn").click(function () {
+        var 저장할거 = {
+          질문1: $("#q1").val(),
+          질문2: $("#q2").val(),
+          질문3: $("#q3").val(),
+          외향1: $("#e1").val(),
+          외향2: $("#e2").val(),
+          외향3: $("#e3").val(),
+          내향1: $("#i1").val(),
+          내향2: $("#i2").val(),
+          내향3: $("#i3").val(),
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("저장에 성공하였습니다");
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("저장에 실패하였습니다");
+          });
+      });
+    </script>
   </body>
 </html>

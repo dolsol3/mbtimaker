@@ -10,7 +10,7 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -51,114 +51,118 @@
     <article class="making">
       <div class="making__container border border-3 border-warning mt-3">
         <div class="making__head">
-          <div class="progress mt-3">
-            <div
-              class="progress-bar"
-              role="progressbar"
-              style="width: calc(100 / 21 * 21%)"
-            >
-              21/21
-            </div>
-          </div>
-          <div class="making__pass-button mt-3">
-            <button type="button" class="btn btn-outline-danger">이전</button>
-            <button type="button" class="save-btn btn btn-outline-dark">
-              저장하기
-            </button>
-            <button type="button" class="btn btn-outline-primary">다음</button>
-          </div>
-          <div class="making__title p24 mt-3">INFJ 결과 작성하기</div>
+          <!-- 회원가입 -->
+          <div class="making__title p24 mt-3">회원가입&로그인</div>
         </div>
-        <div class="making__text mt-3">
+        <div class="join-group mt-3">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >별명</span
+              >이름</span
             >
             <input
-              id="nickname"
+              id="name-new"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="INFJ 별명을 지어주세요"
+              placeholder="사용할 이름을 적어주세요"
             />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징1</span
+              >이메일 주소</span
             >
             <input
-              id="character1"
-              type="text"
+              id="email-new"
+              type="email"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
+              placeholder="이메일주소를 적어주세요"
             />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징2</span
+              >비밀번호입력</span
             >
             <input
-              id="character2"
-              type="text"
+              id="password-new"
+              type="password"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
+              placeholder="비밀번호는 6자리 이상으로 입력하세요"
             />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징3</span
+              >비밀번호확인</span
             >
             <input
-              id="character3"
-              type="text"
+              type="password"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
+              placeholder="비밀번호를 확인합니다"
+            />
+          </div>
+          <button
+            id="register"
+            type="button"
+            class="join-btn btn btn-outline-primary"
+          >
+            회원가입 하기
+          </button>
+        </div>
+        <p class="text-end p14 mt-3">회원이라면? 로그인하러가기</p>
+        <!-- 로그인 -->
+        <div class="login-group mt-3">
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="inputGroup-sizing-default"
+              >이메일 주소</span
+            >
+            <input
+              id="email-input"
+              type="email"
+              class="form-control"
+              aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-default"
+              placeholder="이메일주소를 적어주세요"
             />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징4</span
+              >비밀번호입력</span
             >
             <input
-              id="character4"
-              type="text"
+              id="password-input"
+              type="password"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
+              placeholder="비밀번호는 8자리 이상으로 입력하세요"
             />
           </div>
-          <div class="input-group">
-            <input
-              type="file"
-              class="result__img-upload form-control"
-              id="inputGroupFile04"
-              aria-describedby="inputGroupFileAddon04"
-              aria-label="Upload"
-              accept="image/*"
-            />
-            <button
-              class="btn btn-outline-primary"
-              type="button"
-              id="inputGroupFileAddon04"
-            >
-              올리기
-            </button>
-          </div>
-          <div class="img-review-box mt-3 mb-3">
-            <img class="img-review border border-info" src="#" alt="미리보기" />
-          </div>
+
+          <button
+            id="login"
+            type="button"
+            class="join-btn btn btn-outline-primary"
+          >
+            로그인 하기
+          </button>
+          <button
+            id="logout"
+            type="button"
+            class="join-btn btn btn-outline-primary"
+          >
+            로그아웃 하기
+          </button>
         </div>
       </div>
     </article>
-
+    <!-- 로컬스토리지에서 이름 가져오기 확인용 -->
+    <!-- <div id="username">이름</div> -->
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -190,59 +194,55 @@
       integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
       crossorigin="anonymous"
     ></script>
-
-    <script>
-      const reader = new FileReader();
-
-      reader.onload = (readerEvent) => {
-        document
-          .querySelector(".img-review")
-          .setAttribute("src", readerEvent.target.result);
-        //파일을 읽는 이벤트가 발생하면 img_section의 src 속성을 readerEvent의 결과물로 대체함
-      };
-
-      document
-        .querySelector("#inputGroupFile04")
-        .addEventListener("change", (changeEvent) => {
-          //upload_file 에 이벤트리스너를 장착
-
-          const imgFile = changeEvent.target.files[0];
-          reader.readAsDataURL(imgFile);
-          //업로드한 이미지의 URL을 reader에 등록
-        });
-    </script>
     <script>
       const db = firebase.firestore();
       const storage = firebase.storage();
-      // 이미지 저장하기
-      var file = document.querySelector(".result__img-upload").files[0];
-      var storageRef = storage.ref();
-      var 저장할경로 = storageRef.child("image/" + file.name);
-      var 업로드작업 = 저장할경로.put(file);
 
-      // 주소찾기
-      var 쿼리스트링 = new URLSearchParams(window.location.search);
+      // 유저정보 불러오기 로컬스토리지를 사용한다
+      var 뺀거 = localStorage.getItem("user");
+      // // JSON을 바로 뺄 수 없다
+      $("#username").html(JSON.parse(뺀거).displayName);
+      firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          console.log(user.uid);
+          console.log(user.displayName);
+          localStorage.setItem("user", JSON.stringify(user));
+        }
+      });
+      // 이메일 회원가입
 
-      $(".save-btn").click(function () {
-        var 저장할거 = {
-          INFJ별명: $("#nickname").val(),
-          INFJ특징1: $("#character1").val(),
-          INFJ특징2: $("#character2").val(),
-          INFJ특징3: $("#character3").val(),
-          INFJ특징4: $("#character4").val(),
-        };
-        db.collection("보여주기")
-          .doc(쿼리스트링.get("id"))
-          .update(저장할거)
+      $("#register").click(function () {
+        var 이메일 = $("#email-new").val();
+        var 비밀번호 = $("#password-new").val();
+        var 이름 = $("#name-new").val();
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(이메일, 비밀번호)
           .then((result) => {
-            // 성공하면 실행할 코드
             console.log(result);
-            alert("저장에 성공하였습니다");
-          })
-          .catch(() => {
-            // 실패하면 실행할 코드
-            alert("저장에 실패하였습니다");
+            console.log(result.user);
+            result.user.updateProfile({ displayName: 이름 });
           });
+      });
+
+      //   이메일 로그인
+
+      $("#login").click(function () {
+        var 이메일2 = $("#email-input").val();
+        var 비밀번호2 = $("#password-input").val();
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(이메일2, 비밀번호2)
+          .then((result) => {
+            console.log(result.user);
+          });
+      });
+
+      //   로그아웃
+
+      $("#logout").click(function () {
+        firebase.auth().signOut();
+        localStorage.removeItem("user");
       });
     </script>
   </body>

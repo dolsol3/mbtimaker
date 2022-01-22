@@ -62,6 +62,9 @@
           </div>
           <div class="making__pass-button mt-3">
             <button type="button" class="btn btn-outline-danger">이전</button>
+            <button type="button" class="save-btn btn btn-outline-dark">
+              저장하기
+            </button>
             <button type="button" class="btn btn-outline-primary">다음</button>
           </div>
           <div class="making__title p24 mt-3">ISTJ 결과 작성하기</div>
@@ -72,6 +75,7 @@
               >별명</span
             >
             <input
+              id="nickname"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -84,6 +88,7 @@
               >특징1</span
             >
             <input
+              id="character1"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -96,6 +101,7 @@
               >특징2</span
             >
             <input
+              id="character2"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -108,6 +114,7 @@
               >특징3</span
             >
             <input
+              id="character3"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -120,6 +127,7 @@
               >특징4</span
             >
             <input
+              id="character4"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -130,7 +138,7 @@
           <div class="input-group">
             <input
               type="file"
-              class="form-control"
+              class="result__img-upload form-control"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               aria-label="Upload"
@@ -202,6 +210,40 @@
           reader.readAsDataURL(imgFile);
           //업로드한 이미지의 URL을 reader에 등록
         });
+    </script>
+    <script>
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+      // 이미지 저장하기
+      var file = document.querySelector(".result__img-upload").files[0];
+      var storageRef = storage.ref();
+      var 저장할경로 = storageRef.child("image/" + file.name);
+      var 업로드작업 = 저장할경로.put(file);
+
+      // 주소찾기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+
+      $(".save-btn").click(function () {
+        var 저장할거 = {
+          ISTJ별명: $("#nickname").val(),
+          ISTJ특징1: $("#character1").val(),
+          ISTJ특징2: $("#character2").val(),
+          ISTJ특징3: $("#character3").val(),
+          ISTJ특징4: $("#character4").val(),
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("저장에 성공하였습니다");
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("저장에 실패하였습니다");
+          });
+      });
     </script>
   </body>
 </html>

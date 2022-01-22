@@ -1,0 +1,11 @@
+.making {
+  display: flex;
+  justify-content: center;
+}
+
+.making__container {
+  width: 480px;
+  height: auto;
+  padding: 0px 15px;
+  justify-content: center;
+}
