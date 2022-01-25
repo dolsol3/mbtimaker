@@ -55,9 +55,9 @@
             <div
               class="progress-bar"
               role="progressbar"
-              style="width: calc(100 / 21 * 4%)"
+              style="width: calc(100 / 22 * 4%)"
             >
-              4/21
+              4/22
             </div>
           </div>
           <div class="making__pass-button mt-3">
@@ -253,6 +253,8 @@
           감정1: $("#f1").val(),
           감정2: $("#f2").val(),
           감정3: $("#f3").val(),
+          uid: JSON.parse(localStorage.getItem("user")).uid,
+          이름: JSON.parse(localStorage.getItem("user")).displayName,
         };
         db.collection("보여주기")
           .doc(쿼리스트링.get("id"))

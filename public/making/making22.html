@@ -55,9 +55,9 @@
             <div
               class="progress-bar"
               role="progressbar"
-              style="width: calc(100 / 22 * 11%)"
+              style="width: calc(100 / 22 * 22%)"
             >
-              11/22
+              22/22
             </div>
           </div>
           <div class="making__pass-button mt-3">
@@ -65,93 +65,60 @@
             <button type="button" class="save-btn btn btn-outline-dark">
               저장하기
             </button>
-            <button type="button" class="btn btn-outline-primary">다음</button>
+            <button id="publish" type="button" class="btn btn-outline-primary">
+              배포하기
+            </button>
           </div>
-          <div class="making__title p24 mt-3">ENTJ 결과 작성하기</div>
+          <div class="making__title p24 mt-3">자신의 콘텐츠를 홍보하세요!</div>
         </div>
         <div class="making__text mt-3">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >별명</span
+              >홍보명</span
             >
             <input
-              id="nickname"
+              id="ad-title"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="ENTJ 별명을 지어주세요"
+              placeholder="홍보할 내용의 주제를 간략히 적어주세요"
             />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징1</span
+              >짧은홍보문구</span
             >
             <input
-              id="character1"
+              id="ad-post"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
+              placeholder="100자 내로 간략히 적어주세요"
             />
           </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징2</span
-            >
-            <input
-              id="character2"
-              type="text"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
-            />
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징3</span
-            >
-            <input
-              id="character3"
-              type="text"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
-            />
-          </div>
-          <div class="input-group mb-3">
-            <span class="input-group-text" id="inputGroup-sizing-default"
-              >특징4</span
-            >
-            <input
-              id="character4"
-              type="text"
-              class="form-control"
-              aria-label="Sizing example input"
-              aria-describedby="inputGroup-sizing-default"
-              placeholder="해당 유형의 특징을 작성해주세요"
-            />
-          </div>
+
           <div class="input-group">
             <input
               type="file"
-              class="img-upload result__img-upload form-control"
+              class="result__img-upload form-control"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               aria-label="Upload"
               accept="image/*"
             />
             <button
-              class="btn btn-outline-primary"
+              class="img-upload btn btn-outline-primary"
               type="button"
               id="inputGroupFileAddon04"
             >
               올리기
             </button>
           </div>
+          <p class="p14 text-end mt-1">
+            홍보이미지 권장 크기는 360px * 120px 입니다.
+          </p>
           <div class="img-review-box mt-3 mb-3">
             <img class="img-review border border-info" src="#" alt="미리보기" />
           </div>
@@ -220,12 +187,9 @@
 
       $(".save-btn").click(function () {
         var 저장할거 = {
-          ENTJ별명: $("#nickname").val(),
-          ENTJ특징1: $("#character1").val(),
-          ENTJ특징2: $("#character2").val(),
-          ENTJ특징3: $("#character3").val(),
-          ENTJ특징4: $("#character4").val(),
-          ENTJ사진: url,
+          홍보명: $("#ad-title").val(),
+          짧은홍보문구: $("#ad-post").val(),
+          게시자홍보사진: url,
           uid: JSON.parse(localStorage.getItem("user")).uid,
           이름: JSON.parse(localStorage.getItem("user")).displayName,
         };

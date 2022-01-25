@@ -17,7 +17,7 @@ $(".img-upload").click(function () {
     // 성공하면 보여줄 함수
     () => {
       업로드작업.snapshot.ref.getDownloadURL().then((url) => {
-        console.log("이비지가 올라간 경로는", url);
+        console.log("이미지가 올라간 경로는", url);
         alert("사진 저장에 성공하였습니다");
       });
     }
