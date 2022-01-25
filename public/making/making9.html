@@ -214,11 +214,6 @@
     <script>
       const db = firebase.firestore();
       const storage = firebase.storage();
-      // 이미지 저장하기
-      var file = document.querySelector(".result__img-upload").files[0];
-      var storageRef = storage.ref();
-      var 저장할경로 = storageRef.child("image/" + file.name);
-      var 업로드작업 = 저장할경로.put(file);
 
       // 주소찾기
       var 쿼리스트링 = new URLSearchParams(window.location.search);
@@ -245,5 +240,7 @@
           });
       });
     </script>
+    <!-- 이미지 저장하기 -->
+    <script src="../js/imgupload.js"></script>
   </body>
 </html>
