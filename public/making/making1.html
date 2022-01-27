@@ -181,13 +181,13 @@
 
       // 주소찾기
       var 쿼리스트링 = new URLSearchParams(window.location.search);
-
+      var 초기테스트숫자 = 0;
       $(".save-btn").click(function () {
         var 저장할거 = {
           제목: $(".title-input").val(),
           설명: $(".explain-input").val(),
           수정날짜: new Date(),
-
+          테스트횟수: parseInt(초기테스트숫자),
           uid: JSON.parse(localStorage.getItem("user")).uid,
           이름: JSON.parse(localStorage.getItem("user")).displayName,
         };
