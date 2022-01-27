@@ -1,0 +1,22 @@
+.test {
+  display: flex;
+  justify-content: center;
+}
+
+.test__container {
+  width: 480px;
+  height: auto;
+}
+.test-image {
+  width: 360px;
+  height: 360px;
+}
+
+.info {
+  margin-top: 14px;
+}
+
+.result__button-group {
+  display: flex;
+  justify-content: center;
+}

@@ -18,7 +18,23 @@ $(".img-upload").click(function () {
     () => {
       업로드작업.snapshot.ref.getDownloadURL().then((url) => {
         console.log("이미지가 올라간 경로는", url);
-        alert("사진 저장에 성공하였습니다");
+
+        var 저장할거3 = {
+          홍보이미지: url,
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거3)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("사진 저장에 성공하였습니다");
+            // location.replace(link);
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("사진 저장및공유에 실패하였습니다");
+          });
       });
     }
   );

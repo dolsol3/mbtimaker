@@ -61,11 +61,15 @@
             </div>
           </div>
           <div class="making__pass-button mt-3">
-            <button type="button" class="btn btn-outline-danger">이전</button>
+            <button id="previous" type="button" class="btn btn-outline-danger">
+              이전
+            </button>
             <button type="button" class="save-btn btn btn-outline-dark">
               저장하기
             </button>
-            <button type="button" class="btn btn-outline-primary">다음</button>
+            <button id="next" type="button" class="btn btn-outline-primary">
+              다음
+            </button>
           </div>
           <div class="making__title p24 mt-3">외향(E) VS 내향(I)</div>
         </div>
@@ -267,6 +271,21 @@
             // 실패하면 실행할 코드
             alert("저장에 실패하였습니다");
           });
+      });
+    </script>
+    <!-- 이전 / 다음 버튼 -->
+    <script>
+      var 이전화면 = "making1.html?id=" + 쿼리스트링.get("id");
+      var 다음화면 = "making3.html?id=" + 쿼리스트링.get("id");
+      // 이전 버튼
+      $("#previous").click(function () {
+        location.href = 이전화면;
+      });
+
+      // 다음 버튼
+
+      $("#next").click(function () {
+        location.href = 다음화면;
       });
     </script>
   </body>

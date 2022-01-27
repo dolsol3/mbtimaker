@@ -61,11 +61,15 @@
             </div>
           </div>
           <div class="making__pass-button mt-3">
-            <button type="button" class="btn btn-outline-danger">이전</button>
+            <button id="previous" type="button" class="btn btn-outline-danger">
+              이전
+            </button>
             <button type="button" class="save-btn btn btn-outline-dark">
               저장하기
             </button>
-            <button type="button" class="btn btn-outline-primary">다음</button>
+            <button id="next" type="button" class="btn btn-outline-primary">
+              다음
+            </button>
           </div>
           <div class="making__title p24 mt-3">MBTI 제목 및 설명 적기</div>
         </div>
@@ -174,7 +178,36 @@
     <script>
       const db = firebase.firestore();
       const storage = firebase.storage();
-      // 이미지 저장하기
+
+      // 주소찾기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+
+      $(".save-btn").click(function () {
+        var 저장할거 = {
+          제목: $(".title-input").val(),
+          설명: $(".explain-input").val(),
+          수정날짜: new Date(),
+
+          uid: JSON.parse(localStorage.getItem("user")).uid,
+          이름: JSON.parse(localStorage.getItem("user")).displayName,
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("저장에 성공하였습니다");
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("저장에 실패하였습니다");
+          });
+      });
+    </script>
+    <!-- 이미지 저장하기 -->
+    <script>
+      // MBTI대표 이미지 저장하기
       $(".img-upload").click(function () {
         var file = document.querySelector(".title-img-upload").files[0];
         var storageRef = storage.ref();
@@ -193,37 +226,42 @@
           // 성공하면 보여줄 함수
           () => {
             업로드작업.snapshot.ref.getDownloadURL().then((url) => {
-              console.log("이비지가 올라간 경로는", url);
-              alert("사진 저장에 성공하였습니다");
+              console.log("이미지가 올라간 경로는", url);
+
+              var 저장할거3 = {
+                대표사진: url,
+              };
+              db.collection("보여주기")
+                .doc(쿼리스트링.get("id"))
+                .update(저장할거3)
+                .then((result) => {
+                  // 성공하면 실행할 코드
+                  console.log(result);
+                  alert("사진 저장에 성공하였습니다");
+                  // location.replace(link);
+                })
+                .catch(() => {
+                  // 실패하면 실행할 코드
+                  alert("사진 저장및공유에 실패하였습니다");
+                });
             });
           }
         );
       });
+    </script>
+    <!-- 이전 / 다음 버튼 클릭 -->
+    <script>
+      var 이전화면 = "../index.html";
+      var 다음화면 = "making2.html?id=" + 쿼리스트링.get("id");
+      // 이전 버튼
+      $("#previous").click(function () {
+        location.href = 이전화면;
+      });
 
-      // 주소찾기
-      var 쿼리스트링 = new URLSearchParams(window.location.search);
+      // 다음 버튼
 
-      $(".save-btn").click(function () {
-        var 저장할거 = {
-          제목: $(".title-input").val(),
-          설명: $(".explain-input").val(),
-          수정날짜: new Date(),
-          대표사진: url,
-          uid: JSON.parse(localStorage.getItem("user")).uid,
-          이름: JSON.parse(localStorage.getItem("user")).displayName,
-        };
-        db.collection("보여주기")
-          .doc(쿼리스트링.get("id"))
-          .update(저장할거)
-          .then((result) => {
-            // 성공하면 실행할 코드
-            console.log(result);
-            alert("저장에 성공하였습니다");
-          })
-          .catch(() => {
-            // 실패하면 실행할 코드
-            alert("저장에 실패하였습니다");
-          });
+      $("#next").click(function () {
+        location.href = 다음화면;
       });
     </script>
   </body>

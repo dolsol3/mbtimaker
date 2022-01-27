@@ -61,11 +61,15 @@
             </div>
           </div>
           <div class="making__pass-button mt-3">
-            <button type="button" class="btn btn-outline-danger">이전</button>
+            <button id="previous" type="button" class="btn btn-outline-danger">
+              이전
+            </button>
             <button type="button" class="save-btn btn btn-outline-dark">
               저장하기
             </button>
-            <button type="button" class="btn btn-outline-primary">다음</button>
+            <button id="next" type="button" class="btn btn-outline-primary">
+              다음
+            </button>
           </div>
           <div class="making__title p24 mt-3">ENTJ 결과 작성하기</div>
         </div>
@@ -138,14 +142,14 @@
           <div class="input-group">
             <input
               type="file"
-              class="img-upload result__img-upload form-control"
+              class="result__img-upload form-control"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               aria-label="Upload"
               accept="image/*"
             />
             <button
-              class="btn btn-outline-primary"
+              class="img-upload btn btn-outline-primary"
               type="button"
               id="inputGroupFileAddon04"
             >
@@ -225,7 +229,7 @@
           ENTJ특징2: $("#character2").val(),
           ENTJ특징3: $("#character3").val(),
           ENTJ특징4: $("#character4").val(),
-          ENTJ사진: url,
+
           uid: JSON.parse(localStorage.getItem("user")).uid,
           이름: JSON.parse(localStorage.getItem("user")).displayName,
         };
@@ -244,6 +248,64 @@
       });
     </script>
     <!-- 이미지 저장하기 -->
-    <script src="../js/imgupload.js"></script>
+    <script>
+      // MBTI결과 이미지 저장하기
+      $(".img-upload").click(function () {
+        var file = document.querySelector(".result__img-upload").files[0];
+        var storageRef = storage.ref();
+        var 저장할경로 = storageRef.child("image/" + file.name);
+        var 업로드작업 = 저장할경로.put(file);
+
+        업로드작업.on(
+          "state_changed",
+          // 변화할 때 동작하는 함수
+          null,
+          // 에러 상황에 동작하는 함수
+          (error) => {
+            console.error("이미지를 올리는데 실패한 원이는", error);
+            alert("사진 저장에 실패하였습니다");
+          },
+          // 성공하면 보여줄 함수
+          () => {
+            업로드작업.snapshot.ref.getDownloadURL().then((url) => {
+              console.log("이미지가 올라간 경로는", url);
+
+              var 저장할거3 = {
+                ENTJ사진: url,
+              };
+              db.collection("보여주기")
+                .doc(쿼리스트링.get("id"))
+                .update(저장할거3)
+                .then((result) => {
+                  // 성공하면 실행할 코드
+                  console.log(result);
+                  alert("사진 저장에 성공하였습니다");
+                  // location.replace(link);
+                })
+                .catch(() => {
+                  // 실패하면 실행할 코드
+                  alert("사진 저장및공유에 실패하였습니다");
+                });
+            });
+          }
+        );
+      });
+    </script>
+
+    <!-- 이전 / 다음 버튼 -->
+    <script>
+      var 이전화면 = "making10.html?id=" + 쿼리스트링.get("id");
+      var 다음화면 = "making12.html?id=" + 쿼리스트링.get("id");
+      // 이전 버튼
+      $("#previous").click(function () {
+        location.href = 이전화면;
+      });
+
+      // 다음 버튼
+
+      $("#next").click(function () {
+        location.href = 다음화면;
+      });
+    </script>
   </body>
 </html>
