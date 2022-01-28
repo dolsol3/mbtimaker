@@ -182,12 +182,44 @@
       // 주소찾기
       var 쿼리스트링 = new URLSearchParams(window.location.search);
       var 초기테스트숫자 = 0;
+      var ESTP테스트횟수 = 0;
+      var ESTJ테스트횟수 = 0;
+      var ESFP테스트횟수 = 0;
+      var ESFJ테스트횟수 = 0;
+      var ENTP테스트횟수 = 0;
+      var ENTJ테스트횟수 = 0;
+      var ENFP테스트횟수 = 0;
+      var ENFJ테스트횟수 = 0;
+      var ISTP테스트횟수 = 0;
+      var ISTJ테스트횟수 = 0;
+      var ISFP테스트횟수 = 0;
+      var ISFJ테스트횟수 = 0;
+      var INTP테스트횟수 = 0;
+      var INTJ테스트횟수 = 0;
+      var INFP테스트횟수 = 0;
+      var INFJ테스트횟수 = 0;
       $(".save-btn").click(function () {
         var 저장할거 = {
           제목: $(".title-input").val(),
           설명: $(".explain-input").val(),
           수정날짜: new Date(),
           테스트횟수: parseInt(초기테스트숫자),
+          ESTP조회수: parseInt(ESTP테스트횟수),
+          ESTJ조회수: parseInt(ESTJ테스트횟수),
+          ESFP조회수: parseInt(ESFP테스트횟수),
+          ESFJ조회수: parseInt(ESFJ테스트횟수),
+          ENTP조회수: parseInt(ENTP테스트횟수),
+          ENTJ조회수: parseInt(ENTJ테스트횟수),
+          ENFP조회수: parseInt(ENFP테스트횟수),
+          ENFJ조회수: parseInt(ENFJ테스트횟수),
+          ISTP조회수: parseInt(ISTP테스트횟수),
+          ISTJ조회수: parseInt(ISTJ테스트횟수),
+          ISFP조회수: parseInt(ISFP테스트횟수),
+          ISFJ조회수: parseInt(ISFJ테스트횟수),
+          INTP조회수: parseInt(INTP테스트횟수),
+          INTJ조회수: parseInt(INTJ테스트횟수),
+          INFP조회수: parseInt(INFP테스트횟수),
+          INFJ조회수: parseInt(INFJ테스트횟수),
           uid: JSON.parse(localStorage.getItem("user")).uid,
           이름: JSON.parse(localStorage.getItem("user")).displayName,
         };
