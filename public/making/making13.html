@@ -55,14 +55,21 @@
             <div
               class="progress-bar"
               role="progressbar"
-              style="width: calc(100 / 21 * 13%)"
+              style="width: calc(100 / 22 * 13%)"
             >
-              13/21
+              13/22
             </div>
           </div>
           <div class="making__pass-button mt-3">
-            <button type="button" class="btn btn-outline-danger">이전</button>
-            <button type="button" class="btn btn-outline-primary">다음</button>
+            <button id="previous" type="button" class="btn btn-outline-danger">
+              이전
+            </button>
+            <button type="button" class="save-btn btn btn-outline-dark">
+              저장하기
+            </button>
+            <button id="next" type="button" class="btn btn-outline-primary">
+              다음
+            </button>
           </div>
           <div class="making__title p24 mt-3">ENFJ 결과 작성하기</div>
         </div>
@@ -72,6 +79,7 @@
               >별명</span
             >
             <input
+              id="nickname"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -84,6 +92,7 @@
               >특징1</span
             >
             <input
+              id="character1"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -96,6 +105,7 @@
               >특징2</span
             >
             <input
+              id="character2"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -108,6 +118,7 @@
               >특징3</span
             >
             <input
+              id="character3"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -120,6 +131,7 @@
               >특징4</span
             >
             <input
+              id="character4"
               type="text"
               class="form-control"
               aria-label="Sizing example input"
@@ -130,14 +142,14 @@
           <div class="input-group">
             <input
               type="file"
-              class="form-control"
+              class="result__img-upload form-control"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               aria-label="Upload"
               accept="image/*"
             />
             <button
-              class="btn btn-outline-primary"
+              class="img-upload btn btn-outline-primary"
               type="button"
               id="inputGroupFileAddon04"
             >
@@ -202,6 +214,98 @@
           reader.readAsDataURL(imgFile);
           //업로드한 이미지의 URL을 reader에 등록
         });
+    </script>
+    <script>
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+
+      // 주소찾기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+
+      $(".save-btn").click(function () {
+        var 저장할거 = {
+          ENFJ별명: $("#nickname").val(),
+          ENFJ특징1: $("#character1").val(),
+          ENFJ특징2: $("#character2").val(),
+          ENFJ특징3: $("#character3").val(),
+          ENFJ특징4: $("#character4").val(),
+
+          uid: JSON.parse(localStorage.getItem("user")).uid,
+          이름: JSON.parse(localStorage.getItem("user")).displayName,
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("저장에 성공하였습니다");
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("저장에 실패하였습니다");
+          });
+      });
+    </script>
+    <!-- 이미지 저장하기 -->
+    <script>
+      // MBTI결과 이미지 저장하기
+      $(".img-upload").click(function () {
+        var file = document.querySelector(".result__img-upload").files[0];
+        var storageRef = storage.ref();
+        var 저장할경로 = storageRef.child("image/" + file.name);
+        var 업로드작업 = 저장할경로.put(file);
+
+        업로드작업.on(
+          "state_changed",
+          // 변화할 때 동작하는 함수
+          null,
+          // 에러 상황에 동작하는 함수
+          (error) => {
+            console.error("이미지를 올리는데 실패한 원이는", error);
+            alert("사진 저장에 실패하였습니다");
+          },
+          // 성공하면 보여줄 함수
+          () => {
+            업로드작업.snapshot.ref.getDownloadURL().then((url) => {
+              console.log("이미지가 올라간 경로는", url);
+
+              var 저장할거3 = {
+                ENFJ사진: url,
+              };
+              db.collection("보여주기")
+                .doc(쿼리스트링.get("id"))
+                .update(저장할거3)
+                .then((result) => {
+                  // 성공하면 실행할 코드
+                  console.log(result);
+                  alert("사진 저장에 성공하였습니다");
+                  // location.replace(link);
+                })
+                .catch(() => {
+                  // 실패하면 실행할 코드
+                  alert("사진 저장및공유에 실패하였습니다");
+                });
+            });
+          }
+        );
+      });
+    </script>
+
+    <!-- 이전 / 다음 버튼 -->
+    <script>
+      var 이전화면 = "making12.html?id=" + 쿼리스트링.get("id");
+      var 다음화면 = "making14.html?id=" + 쿼리스트링.get("id");
+      // 이전 버튼
+      $("#previous").click(function () {
+        location.href = 이전화면;
+      });
+
+      // 다음 버튼
+
+      $("#next").click(function () {
+        location.href = 다음화면;
+      });
     </script>
   </body>
 </html>

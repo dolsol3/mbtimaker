@@ -55,53 +55,54 @@
             <div
               class="progress-bar"
               role="progressbar"
-              style="width: calc(100 / 22 * 1%)"
+              style="width: calc(100 / 22 * 22%)"
             >
-              1/22
+              22/22
             </div>
           </div>
           <div class="making__pass-button mt-3">
-            <button id="previous" type="button" class="btn btn-outline-danger">
-              이전
-            </button>
+            <button type="button" class="btn btn-outline-danger">이전</button>
             <button type="button" class="save-btn btn btn-outline-dark">
               저장하기
             </button>
-            <button id="next" type="button" class="btn btn-outline-primary">
-              다음
+            <button id="publish" type="button" class="btn btn-outline-primary">
+              배포하기
             </button>
           </div>
-          <div class="making__title p24 mt-3">MBTI 제목 및 설명 적기</div>
+          <div class="making__title p24 mt-3">자신의 콘텐츠를 홍보하세요!</div>
         </div>
         <div class="making__text mt-3">
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >제목</span
+              >홍보명</span
             >
             <input
+              id="ad-title"
               type="text"
-              class="title-input form-control"
+              class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="MBTI 제목을 적어주세요"
+              placeholder="홍보할 내용의 주제를 간략히 적어주세요"
             />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="inputGroup-sizing-default"
-              >설명</span
+              >짧은홍보문구</span
             >
             <input
+              id="ad-post"
               type="text"
-              class="explain-input form-control"
+              class="form-control"
               aria-label="Sizing example input"
               aria-describedby="inputGroup-sizing-default"
-              placeholder="어떤 유형의 MBTI인지 사람들에게 알려주세요"
+              placeholder="100자 내로 간략히 적어주세요"
             />
           </div>
+
           <div class="input-group">
             <input
               type="file"
-              class="title-img-upload form-control"
+              class="result__img-upload form-control"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               aria-label="Upload"
@@ -115,6 +116,9 @@
               올리기
             </button>
           </div>
+          <p class="p14 text-end mt-1">
+            홍보이미지 권장 크기는 360px * 120px 입니다.
+          </p>
           <div class="img-review-box mt-3 mb-3">
             <img class="img-review border border-info" src="#" alt="미리보기" />
           </div>
@@ -174,52 +178,17 @@
           //업로드한 이미지의 URL을 reader에 등록
         });
     </script>
-    <!--  쿼리스트링.get("id") + -->
     <script>
       const db = firebase.firestore();
       const storage = firebase.storage();
 
       // 주소찾기
       var 쿼리스트링 = new URLSearchParams(window.location.search);
-      var 초기테스트숫자 = 0;
-      var ESTP테스트횟수 = 0;
-      var ESTJ테스트횟수 = 0;
-      var ESFP테스트횟수 = 0;
-      var ESFJ테스트횟수 = 0;
-      var ENTP테스트횟수 = 0;
-      var ENTJ테스트횟수 = 0;
-      var ENFP테스트횟수 = 0;
-      var ENFJ테스트횟수 = 0;
-      var ISTP테스트횟수 = 0;
-      var ISTJ테스트횟수 = 0;
-      var ISFP테스트횟수 = 0;
-      var ISFJ테스트횟수 = 0;
-      var INTP테스트횟수 = 0;
-      var INTJ테스트횟수 = 0;
-      var INFP테스트횟수 = 0;
-      var INFJ테스트횟수 = 0;
+
       $(".save-btn").click(function () {
         var 저장할거 = {
-          제목: $(".title-input").val(),
-          설명: $(".explain-input").val(),
-          수정날짜: new Date(),
-          테스트횟수: parseInt(초기테스트숫자),
-          ESTP조회수: parseInt(ESTP테스트횟수),
-          ESTJ조회수: parseInt(ESTJ테스트횟수),
-          ESFP조회수: parseInt(ESFP테스트횟수),
-          ESFJ조회수: parseInt(ESFJ테스트횟수),
-          ENTP조회수: parseInt(ENTP테스트횟수),
-          ENTJ조회수: parseInt(ENTJ테스트횟수),
-          ENFP조회수: parseInt(ENFP테스트횟수),
-          ENFJ조회수: parseInt(ENFJ테스트횟수),
-          ISTP조회수: parseInt(ISTP테스트횟수),
-          ISTJ조회수: parseInt(ISTJ테스트횟수),
-          ISFP조회수: parseInt(ISFP테스트횟수),
-          ISFJ조회수: parseInt(ISFJ테스트횟수),
-          INTP조회수: parseInt(INTP테스트횟수),
-          INTJ조회수: parseInt(INTJ테스트횟수),
-          INFP조회수: parseInt(INFP테스트횟수),
-          INFJ조회수: parseInt(INFJ테스트횟수),
+          홍보명: $("#ad-title").val(),
+          짧은홍보문구: $("#ad-post").val(),
           uid: JSON.parse(localStorage.getItem("user")).uid,
           이름: JSON.parse(localStorage.getItem("user")).displayName,
         };
@@ -236,12 +205,33 @@
             alert("저장에 실패하였습니다");
           });
       });
+
+      $("#publish").click(function () {
+        var link = "../index.html";
+        var 저장할거2 = {
+          배포상태: "배포",
+          배포날짜: new date(),
+        };
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .update(저장할거2)
+          .then((result) => {
+            // 성공하면 실행할 코드
+            console.log(result);
+            alert("배포에 성공하였습니다");
+            // location.replace(link);
+          })
+          .catch(() => {
+            // 실패하면 실행할 코드
+            alert("배포에 실패하였습니다");
+          });
+      });
     </script>
     <!-- 이미지 저장하기 -->
     <script>
-      // MBTI대표 이미지 저장하기
+      // MBTI결과 이미지 저장하기
       $(".img-upload").click(function () {
-        var file = document.querySelector(".title-img-upload").files[0];
+        var file = document.querySelector(".result__img-upload").files[0];
         var storageRef = storage.ref();
         var 저장할경로 = storageRef.child("image/" + file.name);
         var 업로드작업 = 저장할경로.put(file);
@@ -261,7 +251,7 @@
               console.log("이미지가 올라간 경로는", url);
 
               var 저장할거3 = {
-                대표사진: url,
+                홍보이미지: url,
               };
               db.collection("보여주기")
                 .doc(쿼리스트링.get("id"))
@@ -281,19 +271,14 @@
         );
       });
     </script>
-    <!-- 이전 / 다음 버튼 클릭 -->
+
+    <!-- 이전 / 다음 버튼 -->
     <script>
-      var 이전화면 = "../index.html";
-      var 다음화면 = "making2.html?id=" + 쿼리스트링.get("id");
+      var 이전화면 = "making21.html?id=" + 쿼리스트링.get("id");
+
       // 이전 버튼
       $("#previous").click(function () {
         location.href = 이전화면;
-      });
-
-      // 다음 버튼
-
-      $("#next").click(function () {
-        location.href = 다음화면;
       });
     </script>
   </body>
