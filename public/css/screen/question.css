@@ -1,0 +1,26 @@
+.question {
+  display: flex;
+  justify-content: center;
+}
+
+.question__container {
+  width: auto;
+  height: auto;
+}
+.question-box {
+  width: 480px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.answer-btn {
+  width: 480px;
+  height: auto;
+}
+.btn {
+  width: 480px;
+  height: auto;
+}
+.progress {
+  width: 480px;
+}
