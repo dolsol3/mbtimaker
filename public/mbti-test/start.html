@@ -1,0 +1,521 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBTI만들기</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">MBTI만들기</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >MBTI만들기</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">사용가이드</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="#">회원가입</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active">내화면</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <article class="start" vallue="1">
+      <div class="start__container border border-3 border-warning mt-3">
+        <div class="start__head">
+          <div class="start__title p24 mt-5 text-center">
+            MBTI 제목이 적혀있는 공간
+          </div>
+        </div>
+        <div class="start__text mt-5">
+          <div class="text-box">
+            <div class="start-wrtier m-3 border-bottom border-info">
+              <div class="start-box1">지은이이름</div>
+              <div class="start-box2">2022.01.22. 11:11:11</div>
+              <div class="start-box3">총 조회수</div>
+            </div>
+            <p class="start-text text-explain m-3">
+              어떤 MBTI인지 설명이 적혀있음 모두 다르게 생겼는데, 얼굴에서
+              성격이 보인다?! MBTI는 성격유형이다?! NOPE 성격을 통해 드러나는
+              외면의 모습도 사람마다 다르다는데, 나의 외모유형으로 매력포인트를
+              찾아보세요.
+            </p>
+          </div>
+          <div class="title-img-box mt-5 mb-3">
+            <img
+              class="title-img border"
+              src="../lion.jpg"
+              alt="MBTI대표이미지"
+            />
+          </div>
+        </div>
+        <div class="start__button-group d-grid gap-2 mb-3">
+          <button
+            type="button"
+            class="start-bts btn btn-outline-primary"
+            onclick="start();"
+          >
+            시작해보자
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <article class="question" vallue="1">
+      <div class="question__container">
+        <div class="progress mt-3">
+          <div
+            class="progress-bar"
+            role="progressbar"
+            style="width: calc(100 / 12 * 0%)"
+          ></div>
+        </div>
+        <div class="question-box border border-3 border-warning mt-5">
+          <p class="text-center question-title m-2" id="title">문제</p>
+        </div>
+        <div class="answer-btn">
+          <input id="type" type="hidden" value="EI" />
+          <button id="A" type="button" class="btn btn-primary mt-3">
+            버튼1
+          </button>
+          <button id="B" type="button" class="btn btn-primary mt-3">
+            버튼2
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <input type="hidden" id="EI" value="0" />
+    <input type="hidden" id="SN" value="0" />
+    <input type="hidden" id="TF" value="0" />
+    <input type="hidden" id="JP" value="0" />
+
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-storage.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyAHIgcKsQBaCnvu2wx6akv1q0bNOtPfue8",
+        authDomain: "mbtimaker.firebaseapp.com",
+        projectId: "mbtimaker",
+        storageBucket: "mbtimaker.appspot.com",
+        messagingSenderId: "627396109985",
+        appId: "1:627396109985:web:d0812804a42c13aaf2b2e0",
+        measurementId: "G-86TRH6DXXW",
+      };
+
+      // Initialize Firebase
+      //   const app = initializeApp(firebaseConfig);
+      firebase.initializeApp(firebaseConfig);
+      //   const analytics = getAnalytics(app);
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const db = firebase.firestore();
+      const storage = firebase.storage();
+      $(".question").hide();
+
+      // 상태표시줄 url 가져오기
+      var 쿼리스트링 = new URLSearchParams(window.location.search);
+    </script>
+
+    <!-- 시작화면 -->
+    <script>
+      db.collection("보여주기")
+        .doc(쿼리스트링.get("id"))
+        .get()
+        .then((시작화면) => {
+          var timestamp = Date(시작화면.data().수정날짜);
+          var date2 = new Date(timestamp);
+          var date3 =
+            date2.getFullYear() +
+            "." +
+            date2.getMonth() +
+            "." +
+            date2.getDate() +
+            "." +
+            date2.getHours() +
+            ":" +
+            date2.getMinutes() +
+            ":" +
+            date2.getSeconds();
+
+          console.log("시작화면" + " " + 시작화면.data().감각3);
+          // js 타임스탬프 -> 날짜 변환은 toDate사용
+          $(".start-box1").html(시작화면.data().이름);
+          $(".start-box2").html(date3);
+          $(".start-box3").html(
+            "총테스트횟수" + " " + 시작화면.data().테스트횟수
+          );
+          $(".start-text").html(시작화면.data().설명);
+        });
+    </script>
+
+    <!-- 질문답변시작 -->
+    <script>
+      function start() {
+        $(".start").hide();
+        $(".question").show();
+        next();
+      }
+
+      $("#A").click(function () {
+        var type = $("#type").val();
+        var preValue = $("#" + type).val();
+        $("#" + type).val(parseInt(preValue) + 1);
+        next();
+      });
+
+      $("#B").click(function () {
+        next();
+      });
+    </script>
+    <!-- 문제풀이 -->
+    <script>
+      // 현재 몇번 문제를 풀고 있는지
+      var num = 1;
+      // var mbti테스트횟수 = 0;
+      var mbti = "";
+
+      // 결과
+      function next() {
+        db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .get()
+          .then((질문답변) => {
+            if (num == 13) {
+              // 3항연산자로 단순화된 식 if  구문을 앞에 쓰고, "?" 넣고 앞에는 참 : 뒤에는 거짓일때 값
+              $("#EI").val() > 2 ? (mbti += "E") : (mbti += "I");
+              $("#SN").val() > 2 ? (mbti += "S") : (mbti += "N");
+              $("#TF").val() > 2 ? (mbti += "T") : (mbti += "F");
+              $("#JP").val() > 2 ? (mbti += "J") : (mbti += "P");
+
+              //   각 테스트별 조회수 세기
+              var ESTP결과보기 = {
+                ESTP조회수: 질문답변.data().ESTP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ESTJ결과보기 = {
+                ESTJ조회수: 질문답변.data().ESTJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ESFP결과보기 = {
+                ESFP조회수: 질문답변.data().ESFP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ESFJ결과보기 = {
+                ESFJ조회수: 질문답변.data().ESFJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ENTP결과보기 = {
+                ENTP조회수: 질문답변.data().ENTP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ENTJ결과보기 = {
+                ENTJ조회수: 질문답변.data().ENTJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ENFP결과보기 = {
+                ENFP조회수: 질문답변.data().ENFP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ENFJ결과보기 = {
+                ENFJ조회수: 질문답변.data().ENFJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ISTP결과보기 = {
+                ISTP조회수: 질문답변.data().ISTP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ISTJ결과보기 = {
+                ISTJ조회수: 질문답변.data().ISTJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ISFP결과보기 = {
+                ISFP조회수: 질문답변.data().ISFP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var ISFJ결과보기 = {
+                ISFJ조회수: 질문답변.data().ISFJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var INTP결과보기 = {
+                INTP조회수: 질문답변.data().INTP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var INTJ결과보기 = {
+                INTJ조회수: 질문답변.data().INTJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var INFP결과보기 = {
+                INFP조회수: 질문답변.data().INFP조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+              var INFJ결과보기 = {
+                INFJ조회수: 질문답변.data().INFJ조회수 + 1,
+                테스트횟수: 질문답변.data().테스트횟수 + 1,
+              };
+
+              if (mbti == "ESTP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ESTP결과보기)
+                  .then((ESTP결과) => {
+                    location.replace(
+                      "../mbti-result/ESTP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ESTJ") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ESTJ결과보기)
+                  .then((ESTJ결과) => {
+                    location.replace(
+                      "../mbti-result/ESTJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ESFP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ESFP결과보기)
+                  .then((ESFP결과) => {
+                    location.replace(
+                      "../mbti-result/ESFP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ESFJ") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ESFJ결과보기)
+                  .then((ESFJ결과) => {
+                    console.log(ESFJ결과);
+                    location.replace(
+                      "../mbti-result/ESFJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ENTP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ENTP결과보기)
+                  .then((ENTP결과) => {
+                    location.replace(
+                      "../mbti-result/ENTP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ENTJ") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ENTJ결과보기)
+                  .then((ENTJ결과) => {
+                    location.replace(
+                      "../mbti-result/ENTJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ENFP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ENFP결과보기)
+                  .then((ENFP결과) => {
+                    location.replace(
+                      "../mbti-result/ENFP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ENFJ") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ENFJ결과보기)
+                  .then((ENFJ결과) => {
+                    location.replace(
+                      "../mbti-result/ENFJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ISTP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ISTP결과보기)
+                  .then((ISTP결과) => {
+                    location.replace(
+                      "../mbti-result/ISTP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ISTJ") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ISTJ결과보기)
+                  .then((ISTJ결과) => {
+                    location.replace(
+                      "../mbti-result/ISTJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ISFP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ISFP결과보기)
+                  .then((ISFP결과) => {
+                    location.replace(
+                      "../mbti-result/ISFP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "ISFJ") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(ISFJ결과보기)
+                  .then((ISFJ결과) => {
+                    location.replace(
+                      "../mbti-result/ISFJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "INTP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(INTP결과보기)
+                  .then((INTP결과) => {
+                    location.replace(
+                      "../mbti-result/INTP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "INTJ") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(INTJ결과보기)
+                  .then((INTJ결과) => {
+                    location.replace(
+                      "../mbti-result/INTJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else if (mbti == "INFP") {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(INFP결과보기)
+                  .then((INFP결과) => {
+                    location.replace(
+                      "../mbti-result/INFP.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              } else {
+                db.collection("보여주기")
+                  .doc(쿼리스트링.get("id"))
+                  .update(INFJ결과보기)
+                  .then((INFJ결과) => {
+                    location.replace(
+                      "../mbti-result/INFJ.html?id=" + 쿼리스트링.get("id")
+                    );
+                  });
+              }
+            } else {
+              $(".progress-bar").attr(
+                "style",
+                "width: calc(100 / 12 *" + num + "%)"
+              );
+              if (num == 1) {
+                console.log(질문답변.data());
+                $("#title").html(질문답변.data().질문1);
+                $("#type").html("EI");
+                $("#A").html(질문답변.data().외향1);
+                $("#B").html(질문답변.data().내향1);
+              } else if (num == 2) {
+                $("#title").html(질문답변.data().질문2);
+                $("#type").val("EI");
+                $("#A").html(질문답변.data().외향2);
+                $("#B").html(질문답변.data().내향2);
+              } else if (num == 3) {
+                $("#title").html(질문답변.data().질문3);
+                $("#type").val("EI");
+                $("#A").html(질문답변.data().외향3);
+                $("#B").html(질문답변.data().내향3);
+              } else if (num == 4) {
+                $("#title").html(질문답변.data().질문4);
+                $("#type").val("SN");
+                $("#A").html(질문답변.data().감각1);
+                $("#B").html(질문답변.data().직관1);
+              } else if (num == 5) {
+                $("#title").html(질문답변.data().질문5);
+                $("#type").val("SN");
+                $("#A").html(질문답변.data().감각2);
+                $("#B").html(질문답변.data().직관2);
+              } else if (num == 6) {
+                $("#title").html(질문답변.data().질문6);
+                $("#type").val("SN");
+                $("#A").html(질문답변.data().감각3);
+                $("#B").html(질문답변.data().직관3);
+              } else if (num == 7) {
+                $("#title").html(질문답변.data().질문7);
+                $("#type").val("TF");
+                $("#A").html(질문답변.data().사고1);
+                $("#B").html(질문답변.data().감정1);
+              } else if (num == 8) {
+                $("#title").html(질문답변.data().질문8);
+                $("#type").val("TF");
+                $("#A").html(질문답변.data().사고2);
+                $("#B").html(질문답변.data().감정2);
+              } else if (num == 9) {
+                $("#title").html(질문답변.data().질문9);
+                $("#type").val("TF");
+                $("#A").html(질문답변.data().사고3);
+                $("#B").html(질문답변.data().감정3);
+              } else if (num == 10) {
+                $("#title").html(질문답변.data().질문10);
+                $("#type").val("JP");
+                $("#A").html(질문답변.data().판단1);
+                $("#B").html(질문답변.data().인식1);
+              } else if (num == 11) {
+                $("#title").html(질문답변.data().질문11);
+                $("#type").val("JP");
+                $("#A").html(질문답변.data().판단2);
+                $("#B").html(질문답변.data().인식2);
+              } else if (num == 12) {
+                $("#title").html(질문답변.data().질문12);
+                $("#type").val("JP");
+                $("#A").html(질문답변.data().질문12);
+                $("#B").html(질문답변.data().인식3);
+              } else {
+                alert("화면을 불러오지 못하였습니다.");
+              }
+              num++;
+              console.log(num);
+            }
+          });
+      }
+    </script>
+  </body>
+</html>
