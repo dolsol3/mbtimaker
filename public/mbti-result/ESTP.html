@@ -100,6 +100,12 @@ entp
         </div>
       </article>
 
+      <!-- 홍보영역 -->
+      <article class="ad-container mb-5">
+        <div class="self-ad" style="background-image: url('../lion.jpg');">
+
+        </div>
+      </article>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -156,8 +162,19 @@ entp
           });
 
 </script>
-<script>
 
+<!-- 버튼 기능 -->
+<script>
+  // 현재 테스트한 테스트를 처음부터 다시 시작하기
+$('#retest').click(function() {
+  window.location.href = '../mbti-test/start.html?id=' + 쿼리스트링.get('id')
+})
+
+// 메인화면으로 가기
+
+$('#reset').click(function() {
+  window.location.href = '../index.html'
+})
 </script>
   </body>
 </html>

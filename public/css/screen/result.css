@@ -32,3 +32,14 @@
   justify-content: center;
   display: flex;
 }
+
+.self-ad {
+  width: 480px;
+  height: 160px;
+}
+
+.ad-container {
+  display: flex;
+  justify-content: center;
+  background-size: cover;
+}
