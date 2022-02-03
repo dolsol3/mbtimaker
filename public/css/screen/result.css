@@ -11,6 +11,7 @@
 #result__img {
   width: 360px;
   height: 360px;
+  background-size: cover;
 }
 
 .info {
@@ -25,4 +26,9 @@
 .adbanner {
   width: 360px;
   height: 120px;
+}
+
+.result__img-box {
+  justify-content: center;
+  display: flex;
 }

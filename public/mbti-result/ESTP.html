@@ -52,11 +52,17 @@ entp
     <article class="result">
         <div class="result__container border border-3 border-warning mt-3">
           <div class="result__head">
-            <p id="estp" class="text-center mt-5">ESTP</p>
-            <p class="result__title text-center p24 mt-2">앰비티아이 제목은 몇자까지 될까15자</h2>
-  
-            <img id="result__img" src="../lion.jpg" alt="" class="result-image rounded-3 mt-5" />
+            <div class="result__head-text">
+              <p id="estp" class="text-center mt-5">ESTP</p>
+              <p class="result__title text-center p24 mt-2">앰비티아이 제목은 몇자까지 될까15자</h2> 
+            </div>
+            <div class="result__img-box mt-4 ">
+              <div id="result__img" class="rounded-3" style="background-image: url('../lion.jpg')"; ></div>  
+            </div>
+            
           </div>
+          
+         
           <div class="result__li m-5">
             <p class="info1">특징1 주저리주저리 적는 공간으로 길게 적어도 된다.</p>
             <p class="info2">특징2 여기도 특징2로 주저리주저리 적어도 되니까 길게길게 적어도 된다.</p>
@@ -141,28 +147,17 @@ entp
           .doc(쿼리스트링.get("id"))
           .get()
           .then((결과불러오기) => {
-              var 결과사진 = 결과불러오기.data().ESTP사진;
             $(".result__title").html(결과불러오기.data().제목);
-            $("#result__img").attr("src",결과사진)
+            $("#result__img").css("background-image",`url(${결과불러오기.data().ESTP사진})`)
             $(".info1").html(결과불러오기.data().ESTP특징1);
             $(".info2").html(결과불러오기.data().ESTP특징2);
             $(".info3").html(결과불러오기.data().ESTP특징3);
-            $(".info4").html(결과불러오기.data().ESTP사진);
+            $(".info4").html(결과불러오기.data().ESTP특징4);
           });
 
 </script>
 <script>
-    db.collection("보여주기")
-          .doc(쿼리스트링.get("id"))
-          .get()
-          .then((결과불러오기2) => {
-            결과불러오기2.data(() => {
-                var 결과보자 = {
-                    ``;
-                };
-            })
-            }
-          });
+
 </script>
   </body>
 </html>
