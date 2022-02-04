@@ -1,3 +1,4 @@
+
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -15,7 +16,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">MBTI만들기</a>
+        <a class="navbar-brand nav-logo" href="#">MBTI만들기</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -30,59 +31,88 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a class="nav-link active nav-make" aria-current="page" href="#"
                 >MBTI만들기</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">사용가이드</a>
+              <a class="nav-link active nav-guide" href="#">사용가이드</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">회원가입</a>
+              <a class="nav-link active nav-join" href="#">회원가입</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active">내화면</a>
+              <a class="nav-link active nav-logout" href="#">로그아웃</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-mypage" href="#">내화면</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-contact" href="#">문의하기</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
 
+
     <article class="result">
         <div class="result__container border border-3 border-warning mt-3">
           <div class="result__head">
-            <p id="enfj" class="text-center mt-5">ENFJ</p>
-            <p class="result__title text-center p24 mt-2">앰비티아이 제목은 몇자까지 될까15자</h2>
-  
-            <img src="../lion.jpg" alt="" class="result-image rounded-3 mt-5" />
+            <div class="result__head-text">
+              <p id="enfj" class="text-center mt-5">ENFJ</p>
+              <p class="result__title text-center p24 mt-2">앰비티아이 제목은 몇자까지 될까15자</h2> 
+            </div>
+            <div class="result__img-box mt-4 ">
+              <div id="result__img" class="rounded-3" style="background-image: url('../lion.jpg')"; ></div>  
+            </div>
+            
           </div>
+          
+         
           <div class="result__li m-5">
-            <p class="info">특징1 주저리주저리 적는 공간으로 길게 적어도 된다.</p>
-            <p class="info">특징2 여기도 특징2로 주저리주저리 적어도 되니까 길게길게 적어도 된다.</p>
-            <p class="info">특징3 마찬가지로 여기도 길게길게길게 적어서 작성해보자</p>
-            <p class="info">특징4 아주아주아자ㅏ아아아우우주주주주 길게 작성하면 된다</p>
+            <p class="info1">특징1 주저리주저리 적는 공간으로 길게 적어도 된다.</p>
+            <p class="info2">특징2 여기도 특징2로 주저리주저리 적어도 되니까 길게길게 적어도 된다.</p>
+            <p class="info3">특징3 마찬가지로 여기도 길게길게길게 적어서 작성해보자</p>
+            <p class="info4">특징4 아주아주아자ㅏ아아아우우주주주주 길게 작성하면 된다</p>
           </div>
-          <div class="start__button-group d-grid gap-2 mb-3">
-            <button type="button" class="start-bts btn btn-outline-primary">
-              다시해볼까?
-            </button>
-            <button type="button" class="start-bts btn btn-outline-primary">
-              다른 테스트 해볼래
-            </button>
-            
-          </div>
-          <div class="addthis-bts">
-                  <!-- Go to www.addthis.com/dashboard to customize your tools -->
-          <div class="addthis_inline_share_toolbox text-center mt-5 mb-3"></div>
-            
-          </div>
+
                
   
 
         </div>
 
       </article>
+<!-- 부가기능 -->
+      <article class="share-group">
+        <div class="start__button-group d-grid gap-2 mb-3 mt-3">
+            <button id = "retest" type="button" class="start-btn btn btn-outline-primary">
+              다시해볼까?
+            </button>
+            <button id="reset" type="button" class="start-btn btn btn-outline-primary">
+              다른 테스트 해볼래
+            </button>
+            
+          </div>
+          
+          <div class="ad-banner">
 
+          </div>
+        <div class="addthis-btn">
+
+        <div class="text-center mt-3">친구들과 공유해서 비교해보세요!~</div>
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <div class="addthis_inline_share_toolbox text-center mt-3 mb-3"></div>
+        
+        </div>
+      </article>
+
+      <!-- 홍보영역 -->
+      <article class="ad-container mb-5">
+        <div class="self-ad" style="background-image: url('../lion.jpg');">
+
+        </div>
+      </article>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.5/firebase-firestore.js"></script>
@@ -118,5 +148,42 @@
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-61c07a1892527c81"></script>
 
+<!-- ad-banner 클릭시 이동 -->
+<script>
+    const db = firebase.firestore();
+    const storage = firebase.storage();
+    
+      // 상태표시줄 url 가져오기
+    var 쿼리스트링 = new URLSearchParams(window.location.search);
+    
+    db.collection("보여주기")
+          .doc(쿼리스트링.get("id"))
+          .get()
+          .then((결과불러오기) => {
+            $(".result__title").html(결과불러오기.data().제목);
+            $("#result__img").css("background-image",`url(${결과불러오기.data().ENFJ사진})`)
+            $(".info1").html(결과불러오기.data().ENFJ특징1);
+            $(".info2").html(결과불러오기.data().ENFJ특징2);
+            $(".info3").html(결과불러오기.data().ENFJ특징3);
+            $(".info4").html(결과불러오기.data().ENFJ특징4);
+          });
+
+</script>
+
+<!-- 버튼 기능 -->
+<script>
+  // 현재 테스트한 테스트를 처음부터 다시 시작하기
+$('#retest').click(function() {
+  window.location.href = '../mbti-test/start.html?id=' + 쿼리스트링.get('id')
+})
+
+// 메인화면으로 가기
+
+$('#reset').click(function() {
+  window.location.href = '../index.html'
+})
+</script>
+    <!-- nav js 파일 연결하기 -->
+    <script class="nav-js" src="../js/nav.js"></script>
   </body>
 </html>

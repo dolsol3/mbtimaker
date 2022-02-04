@@ -15,7 +15,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">MBTI만들기</a>
+        <a class="navbar-brand nav-logo" href="#">MBTI만들기</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -30,18 +30,24 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#"
+              <a class="nav-link active nav-make" aria-current="page" href="#"
                 >MBTI만들기</a
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">사용가이드</a>
+              <a class="nav-link active nav-guide" href="#">사용가이드</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="#">회원가입</a>
+              <a class="nav-link active nav-join" href="#">회원가입</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active">내화면</a>
+              <a class="nav-link active nav-logout" href="#">로그아웃</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-mypage" href="#">내화면</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-contact" href="#">문의하기</a>
             </li>
           </ul>
         </div>
@@ -128,18 +134,24 @@
             ${doc.data().제목}
           </p>
         </div>
-        <div class="thumnail__mainview"></div>
+        <div class="thumnail__mainview" style="background-image: url('${
+          doc.data().대표사진
+        }')";></div>
 
         <div class="sub__mainview">
         
           <div class="writer"><p class="text-primary p14 text-center">${
-            doc.data().지은이
+            doc.data().이름
           }</p></div>
           <div class="view-point">
             <p class="text-primary p14 text-center">${
-              doc.data().조회수
+              doc.data().테스트횟수
             }회 테스트</p></div>
+<<<<<<< HEAD
           <div class="start-mbti"><button onclick = "location.href = 'making/start.html?id=${
+=======
+          <div class="start-mbti"><button onclick = "location.href = 'mbti-test/start.html?id=${
+>>>>>>> dev
             doc.id
           }'" type="button" class="btn btn-outline-primary sub__button p14">
             시작하기
@@ -150,5 +162,7 @@
           });
         });
     </script>
+    <!-- nav js 파일 연결하기 -->
+    <script class="nav-js" src="../js/nav.js"></script>
   </body>
 </html>

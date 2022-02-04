@@ -6,9 +6,9 @@
 .making__container {
   width: 480px;
   height: auto;
-  padding: 0px 15px;
   justify-content: center;
 }
+
 .result-image {
   width: 360px;
   height: 360px;
@@ -33,9 +33,4 @@
 .making__pass-button {
   display: flex;
   justify-content: space-between;
-}
-
-.question-box {
-  border-bottom: 1px solid;
-  border-color: rgb(13, 110, 253);
 }

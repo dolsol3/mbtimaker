@@ -7,9 +7,11 @@
   width: 480px;
   height: auto;
 }
-.result-image {
+
+#result__img {
   width: 360px;
   height: 360px;
+  background-size: cover;
 }
 
 .info {
@@ -17,6 +19,27 @@
 }
 
 .result__button-group {
+  width: 480px;
+  height: auto;
+}
+
+.adbanner {
+  width: 360px;
+  height: 120px;
+}
+
+.result__img-box {
+  justify-content: center;
+  display: flex;
+}
+
+.self-ad {
+  width: 480px;
+  height: 160px;
+}
+
+.ad-container {
   display: flex;
   justify-content: center;
+  background-size: cover;
 }
