@@ -24,6 +24,9 @@ firebase.auth().onAuthStateChanged((user) => {
       alert("로그인을 해야 이용할 수 있습니다");
       location.href = "../login.html";
     });
+    $(".nav-join").click(function () {
+      location.href = "../login.html";
+    });
   }
 });
 // 내화면
@@ -33,4 +36,10 @@ $(".nav-mypage").click(function () {
 // 문의하기
 $(".nav-contact").click(function () {
   alert("광고 및 제휴 문의 : dolsol4@gmail.com");
+});
+
+// 로그아웃
+$(".nav-logout").click(function () {
+  firebase.auth().signOut();
+  localStorage.removeItem("user");
 });
