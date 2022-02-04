@@ -15,11 +15,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-<<<<<<< HEAD
-        <a class="navbar-brand" href="#">MBTI만들기</a>
-=======
         <a class="navbar-brand nav-logo" href="#">MBTI만들기</a>
->>>>>>> dev
         <button
           class="navbar-toggler"
           type="button"
@@ -34,24 +30,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item">
-<<<<<<< HEAD
-              <a class="nav-link active" aria-current="page" href="#"
-=======
               <a class="nav-link active nav-make" aria-current="page" href="#"
->>>>>>> dev
                 >MBTI만들기</a
               >
             </li>
             <li class="nav-item">
-<<<<<<< HEAD
-              <a class="nav-link active" href="#">사용가이드</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="#">회원가입</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active">내화면</a>
-=======
               <a class="nav-link active nav-guide" href="#">사용가이드</a>
             </li>
             <li class="nav-item">
@@ -65,7 +48,6 @@
             </li>
             <li class="nav-item">
               <a class="nav-link active nav-contact" href="#">문의하기</a>
->>>>>>> dev
             </li>
           </ul>
         </div>
@@ -138,14 +120,10 @@
             회원가입 하기
           </button>
         </div>
-<<<<<<< HEAD
-        <p class="text-end p14 mt-3">회원이라면? 로그인하러가기</p>
-=======
         <p class="login-show text-end p14 mt-3 mb-3">
           회원이라면? 로그인하러가기
         </p>
 
->>>>>>> dev
         <!-- 로그인 -->
         <div class="login-group mt-3">
           <div class="input-group mb-3">
@@ -182,21 +160,10 @@
           >
             로그인 하기
           </button>
-<<<<<<< HEAD
-          <button
-            id="logout"
-            type="button"
-            class="join-btn btn btn-outline-primary"
-          >
-            로그아웃 하기
-          </button>
-        </div>
-=======
         </div>
         <p class="join-show text-end p14 mt-3 mb-3">
           아직 회원이 아니라면? 회원가입부터 하자
         </p>
->>>>>>> dev
       </div>
     </article>
     <!-- 로컬스토리지에서 이름 가져오기 확인용 -->
@@ -239,11 +206,7 @@
       // 유저정보 불러오기 로컬스토리지를 사용한다
       var 뺀거 = localStorage.getItem("user");
       // // JSON을 바로 뺄 수 없다
-<<<<<<< HEAD
-      $("#username").html(JSON.parse(뺀거).displayName);
-=======
       // $("#username").html(JSON.parse(뺀거).displayName);
->>>>>>> dev
       firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           console.log(user.uid);
@@ -261,14 +224,6 @@
           .auth()
           .createUserWithEmailAndPassword(이메일, 비밀번호)
           .then((result) => {
-<<<<<<< HEAD
-            console.log(result);
-            console.log(result.user);
-            result.user.updateProfile({ displayName: 이름 });
-          });
-      });
-
-=======
             var 유저정보 = {
               이름: 이름,
               이메일: 이메일,
@@ -302,7 +257,6 @@
         $(".login-show").show();
       });
 
->>>>>>> dev
       //   이메일 로그인
 
       $("#login").click(function () {
@@ -312,19 +266,6 @@
           .auth()
           .signInWithEmailAndPassword(이메일2, 비밀번호2)
           .then((result) => {
-<<<<<<< HEAD
-            console.log(result.user);
-          });
-      });
-
-      //   로그아웃
-
-      $("#logout").click(function () {
-        firebase.auth().signOut();
-        localStorage.removeItem("user");
-      });
-    </script>
-=======
             alert("로그인에 성공했습니다");
             console.log(result.user);
           });
@@ -333,6 +274,5 @@
     </script>
     <!-- nav js 파일 연결하기 -->
     <script class="nav-js" src="../js/nav.js"></script>
->>>>>>> dev
   </body>
 </html>
