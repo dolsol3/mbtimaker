@@ -8,7 +8,7 @@
   height: auto;
 }
 .question-box {
-  width: 440px;
+  width: 480px;
   height: auto;
   border-bottom: 1px solid;
   border-color: rgb(13, 110, 253);
@@ -21,7 +21,4 @@
 .btn2 {
   width: 480px;
   height: auto;
-}
-.progress {
-  width: 480px;
 }
