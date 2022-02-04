@@ -8,9 +8,10 @@
   height: auto;
 }
 .question-box {
-  width: 480px;
+  width: 440px;
   height: auto;
-  border-radius: 10px;
+  border-bottom: 1px solid;
+  border-color: rgb(13, 110, 253);
 }
 
 .answer-btn {

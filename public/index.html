@@ -46,6 +46,9 @@
             <li class="nav-item">
               <a class="nav-link active nav-mypage" href="#">내화면</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link active nav-contact" href="#">문의하기</a>
+            </li>
           </ul>
         </div>
       </div>
@@ -144,7 +147,7 @@
             <p class="text-primary p14 text-center">${
               doc.data().테스트횟수
             }회 테스트</p></div>
-          <div class="start-mbti"><button onclick = "location.href = 'making/start.html?id=${
+          <div class="start-mbti"><button onclick = "location.href = 'mbti-test/start.html?id=${
             doc.id
           }'" type="button" class="btn btn-outline-primary sub__button p14">
             시작하기
@@ -156,6 +159,6 @@
         });
     </script>
     <!-- nav js 파일 연결하기 -->
-    <script class="nav-js" src="/js/nav.js"></script>
+    <script class="nav-js" src="../js/nav.js"></script>
   </body>
 </html>
