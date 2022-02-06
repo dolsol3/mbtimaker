@@ -11,6 +11,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/styles.css" />
+    <!-- 애드센스 광고 -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9186169376806876"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -227,6 +233,17 @@
 
       // 주소찾기
       var 쿼리스트링 = new URLSearchParams(window.location.search);
+      // 저장한거 보여주기
+      db.collection("보여주기")
+        .doc(쿼리스트링.get("id"))
+        .get()
+        .then((저장한거보기) => {
+          $("#nickname").val(저장한거보기.data().ENFJ별명);
+          $("#character1").val(저장한거보기.data().ENFJ특징1);
+          $("#character2").val(저장한거보기.data().ENFJ특징2);
+          $("#character3").val(저장한거보기.data().ENFJ특징3);
+          $("#character4").val(저장한거보기.data().ENFJ특징4);
+        });
 
       $(".save-btn").click(function () {
         var 저장할거 = {

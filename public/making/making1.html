@@ -11,6 +11,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../css/styles.css" />
+    <!-- 애드센스 광고 -->
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9186169376806876"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -204,6 +210,16 @@
       var INTJ테스트횟수 = 0;
       var INFP테스트횟수 = 0;
       var INFJ테스트횟수 = 0;
+
+      // 저장된거 보여주기
+      db.collection("보여주기")
+        .doc(쿼리스트링.get("id"))
+        .get()
+        .then((저장한거보기) => {
+          $(".title-input").val(저장한거보기.data().제목);
+          $(".explain-input").val(저장한거보기.data().설명);
+        });
+
       $(".save-btn").click(function () {
         var 저장할거 = {
           제목: $(".title-input").val(),

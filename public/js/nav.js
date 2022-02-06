@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 // 내화면
 $(".nav-mypage").click(function () {
-  alert("개인 화면 준비중입니다");
+  location.href = "../mypage.html";
 });
 // 문의하기
 $(".nav-contact").click(function () {
@@ -40,6 +40,9 @@ $(".nav-contact").click(function () {
 
 // 로그아웃
 $(".nav-logout").click(function () {
+  alert("로그아웃합니다.");
   firebase.auth().signOut();
   localStorage.removeItem("user");
+
+  $(".nav-join").show();
 });

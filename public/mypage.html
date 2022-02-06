@@ -129,37 +129,46 @@
     <script>
       const db = firebase.firestore();
       const storage = firebase.storage();
+      // 쿼리하는 법 where 내가 원하는 것만 가져온다.
+      // array에서는 'array-contains'를 사용한다
+      var 내uid = JSON.parse(localStorage.getItem("user")).uid;
       db.collection("보여주기")
+        .where("uid", "==", 내uid)
         .get()
-        .then((결과) => {
-          결과.forEach((doc) => {
-            console.log(doc.data());
+        .then((result) => {
+          result.forEach((내화면가져오기) => {
+            console.log(내화면가져오기.data());
             var 미리보기 = `      <article class="container__mainview">
-        <div class="title__mainview">
-          <p class="text__title p20 m-3 text-center">
-            ${doc.data().제목}
-          </p>
-        </div>
-        <div class="thumnail__mainview" style="background-image: url('${
-          doc.data().대표사진
-        }')";></div>
+              <div class="title__mainview">
+                <p class="text__title p20 m-3 text-center">
+                  ${내화면가져오기.data().제목}
+                </p>
+              </div>
+              <div class="thumnail__mainview" style="background-image: url('${
+                내화면가져오기.data().대표사진
+              }')";></div>
 
-        <div class="sub__mainview">
-        
-          <div class="writer"><p class="text-primary p14 text-center">${
-            doc.data().이름
-          }</p></div>
-          <div class="view-point">
-            <p class="text-primary p14 text-center">${doc
-              .data()
-              .테스트횟수.toLocaleString("ko-KR")}회 테스트</p></div>
-          <div class="start-mbti"><button onclick = "location.href = 'mbti-test/start.html?id=${
-            doc.id
-          }'" type="button" class="btn btn-outline-primary sub__button p14">
-            시작하기
-          </button></div>
-        </div>
-      </article>`;
+              <div class="sub__mainview">
+
+                <div class="writer"><p class="text-primary p14 text-center">${
+                  내화면가져오기.data().이름
+                }</p></div>
+                <div class="view-point">
+                  <p class="text-primary p14 text-center">${내화면가져오기
+                    .data()
+                    .테스트횟수.toLocaleString("ko-KR")}회 테스트</p></div>
+                <div class="start-mbti"><button onclick = "location.href = 'mbti-test/start.html?id=${
+                  내화면가져오기.id
+                }'" type="button" class="btn btn-outline-primary sub__button p14">
+                  시작하기
+                </button></div>
+                <div class="edit-mbti"><button onclick = "location.href = '../making/making1.html?id=${
+                  내화면가져오기.id
+                }'" type="button" class="btn btn-outline-primary sub__button p14">
+                  수정하기
+                </button></div>
+              </div>
+            </article>`;
             $(".container").append(미리보기);
           });
         });
