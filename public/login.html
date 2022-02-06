@@ -265,17 +265,21 @@
 
       //   이메일 로그인
 
-      $("#login").click(function () {
-        var 이메일2 = $("#email-input").val();
-        var 비밀번호2 = $("#password-input").val();
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(이메일2, 비밀번호2)
-          .then((result) => {
-            alert("로그인에 성공했습니다");
-            console.log(result.user);
-          });
-        alert("아이디와 비밀번호를 확인해주세요");
+      $("#login").click(function (login) {
+        if (login) {
+          var 이메일2 = $("#email-input").val();
+          var 비밀번호2 = $("#password-input").val();
+          firebase
+            .auth()
+            .signInWithEmailAndPassword(이메일2, 비밀번호2)
+            .then((result) => {
+              alert("로그인에 성공했습니다");
+              console.log(result.user);
+              window.location.href = "/index.html";
+            });
+        } else {
+          alert("아이디와 비밀번호를 확인해주세요");
+        }
       });
     </script>
     <!-- nav js 파일 연결하기 -->

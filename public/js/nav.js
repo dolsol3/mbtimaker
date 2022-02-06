@@ -40,7 +40,9 @@ $(".nav-contact").click(function () {
 
 // 로그아웃
 $(".nav-logout").click(function () {
+  alert("로그아웃합니다.");
   firebase.auth().signOut();
   localStorage.removeItem("user");
+
   $(".nav-join").show();
 });
