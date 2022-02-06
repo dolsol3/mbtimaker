@@ -234,6 +234,18 @@
       // 주소찾기
       var 쿼리스트링 = new URLSearchParams(window.location.search);
 
+      // 저장된거 보여주기
+      db.collection("보여주기")
+        .doc(쿼리스트링.get("id"))
+        .get()
+        .then((저장한거보기) => {
+          $("#nickname").val(저장한거보기.data().ENFP별명);
+          $("#character1").val(저장한거보기.data().ENFP특징1);
+          $("#character2").val(저장한거보기.data().ENFP특징2);
+          $("#character3").val(저장한거보기.data().ENFP특징3);
+          $("#character4").val(저장한거보기.data().ENFP특징4);
+        });
+
       $(".save-btn").click(function () {
         var 저장할거 = {
           ENFP별명: $("#nickname").val(),

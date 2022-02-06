@@ -8,31 +8,17 @@
   height: auto;
 }
 .question-box {
-  width: 480px;
+  /* width: 480px; */
   height: auto;
-<<<<<<< HEAD
-  border-radius: 10px;
-=======
   border-bottom: 1px solid;
   border-color: rgb(13, 110, 253);
->>>>>>> dev
 }
 
 .answer-btn {
   width: 480px;
   height: auto;
 }
-<<<<<<< HEAD
-.btn {
-  width: 480px;
-  height: auto;
-}
-.progress {
-  width: 480px;
-}
-=======
 .btn2 {
   width: 480px;
   height: auto;
 }
->>>>>>> dev

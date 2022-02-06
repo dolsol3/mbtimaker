@@ -150,9 +150,9 @@
             doc.data().이름
           }</p></div>
           <div class="view-point">
-            <p class="text-primary p14 text-center">${
-              doc.data().테스트횟수
-            }회 테스트</p></div>
+            <p class="text-primary p14 text-center">${doc
+              .data()
+              .테스트횟수.toLocaleString("ko-KR")}회 테스트</p></div>
           <div class="start-mbti"><button onclick = "location.href = 'mbti-test/start.html?id=${
             doc.id
           }'" type="button" class="btn btn-outline-primary sub__button p14">
