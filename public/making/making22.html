@@ -203,8 +203,8 @@
         .doc(쿼리스트링.get("id"))
         .get()
         .then((저장한거보기) => {
-          $("#ad-title").val(저장한거보기.doc().홍보명);
-          $("#ad-post").val(저장한거보기.doc().짧은홍보문구);
+          $("#ad-title").val(저장한거보기.data().홍보명);
+          $("#ad-post").val(저장한거보기.data().짧은홍보문구);
         });
 
       $(".save-btn").click(function () {
