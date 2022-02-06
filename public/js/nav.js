@@ -31,7 +31,7 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 // 내화면
 $(".nav-mypage").click(function () {
-  alert("개인 화면 준비중입니다");
+  location.href = "../mypage.html";
 });
 // 문의하기
 $(".nav-contact").click(function () {
