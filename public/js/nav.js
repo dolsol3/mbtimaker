@@ -42,4 +42,5 @@ $(".nav-contact").click(function () {
 $(".nav-logout").click(function () {
   firebase.auth().signOut();
   localStorage.removeItem("user");
+  $(".nav-join").show();
 });
