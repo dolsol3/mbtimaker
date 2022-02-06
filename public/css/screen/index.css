@@ -45,3 +45,11 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.edit-mbti {
+  width: 180px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
